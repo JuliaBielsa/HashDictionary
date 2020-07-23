@@ -38,22 +38,34 @@ def modify(item, passList):
 
 def hacker(item):
     hackerPass = []
-    hackerPass.append(item.replace('o','0'))
-    hackerPass.append(item.replace('e','3'))
-    hackerPass.append(item.replace('a','@'))
-    hackerPass.append(item.replace('s','$'))
-    hackerPass.append(item.replace('i','1'))
-    hackerPass.append(item.replace('a','4'))
-    hackerPass.append(item.replace('e','€'))
-    hackerPass.append((item.replace('o','0')).replace('e','3'))
-    hackerPass.append((item.replace('o','0')).replace('e','€'))
-    hackerPass.append((item.replace('o','0')).replace('a','@'))
-    hackerPass.append((item.replace('o','0')).replace('s','$'))
-    hackerPass.append((item.replace('o','0')).replace('i','1'))
-    hackerPass.append(((item.replace('o','0')).replace('e','3')).replace('a','@'))
-    hackerPass.append(((item.replace('o','0')).replace('e','€')).replace('a','@'))
+    if 'o' in item:
+        hackerPass.append(item.replace('o','0'))
+        if 'e' in item:
+            hackerPass.append((item.replace('o','0')).replace('e','3'))
+            hackerPass.append((item.replace('o','0')).replace('e','€'))
+            if 'a' in item:
+                hackerPass.append(((item.replace('o','0')).replace('e','3')).replace('a','@'))
+                hackerPass.append(((item.replace('o','0')).replace('e','€')).replace('a','@'))
+        if 'a' in item:
+            hackerPass.append((item.replace('o','0')).replace('a','@'))
+        if 's' in item:
+            hackerPass.append((item.replace('o','0')).replace('s','$'))
+        if 'i' in item:
+            hackerPass.append((item.replace('o','0')).replace('i','1'))
+    if 'e' in item:
+        hackerPass.append(item.replace('e','3'))
+        hackerPass.append(item.replace('e','€'))
+    if 'a' in item:
+        hackerPass.append(item.replace('a','@'))
+        hackerPass.append(item.replace('a','4'))
+    if 's' in item:
+        hackerPass.append(item.replace('s','$'))
+    if 'i' in item:
+        hackerPass.append(item.replace('i','1'))
 
     return hackerPass
+
+
 
 
 for item in keyList:
@@ -68,7 +80,7 @@ for item in passList:
     hashedPass = hashlib.md5(item.encode('utf-8')).hexdigest()
     if (hashedPass == hashList[0]):
         print('\n')
-        print ('La password es: '+item)
+        print ('The password is: '+item)
 
 i = 0
 
